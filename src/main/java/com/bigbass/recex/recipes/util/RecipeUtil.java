@@ -22,7 +22,15 @@ public class RecipeUtil {
 
     String id = stack.getUnlocalizedName();
 //    String name = GT_LanguageManager.getTranslation(id).replace("%material", "<...>");
-    String name = GT_LanguageManager.getTranslation(id);
+    String name = "";
+    try {
+      name = stack.getDisplayName();
+    } catch (Exception e1) {
+      try {
+        name = GT_LanguageManager.getTranslation(stack.getUnlocalizedName());
+      } catch (Exception ignored) {
+      }
+    }
 
     if (id != null && !id.isEmpty() && id.equalsIgnoreCase("gt.integrated_circuit")) { // Programmed Circuit
       id += "." + stack.getItemDamage();
