@@ -4,25 +4,27 @@ import gregtech.api.util.GT_LanguageManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-// TODO: Rezepte für OreDict Entries aus OreDict holen: OreDictionary.getOres(name);
 public class RecipeUtil {
 
   public static RecipeEntry formatRegularItemStack(ItemStack stack) {
-    if (stack == null) return null;
-
-    return new RecipeItemEntry(stack.getUnlocalizedName(), stack.getDisplayName(), stack.stackSize);
+//    if (stack == null) return null;
+//
+//    return new RecipeItemEntry(stack.getUnlocalizedName(), stack.getDisplayName(), stack.stackSize);
+    return formatGregtechItemStack(stack);
   }
 
   public static RecipeEntry formatGregtechItemStack(ItemStack stack) {
     if (stack == null) return null;
 
     String id = stack.getUnlocalizedName();
+    String name = GT_LanguageManager.getTranslation(id);
 
     if (id != null && !id.isEmpty() && id.equalsIgnoreCase("gt.integrated_circuit")) { // Programmed Circuit
       id += "." + stack.getItemDamage();
+      name += " (Cfg. " + stack.getItemDamage() + ")";
     }
 
-    return new RecipeItemEntry(id, GT_LanguageManager.getTranslation(stack.getUnlocalizedName()), stack.stackSize);
+    return new RecipeItemEntry(id, name, stack.stackSize);
   }
 
   public static RecipeEntry formatGregtechFluidStack(FluidStack stack) {

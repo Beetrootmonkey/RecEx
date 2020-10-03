@@ -73,6 +73,10 @@ public class ShapedOreDictRecipesGroup {
           }
         }
 
+        if (original.getRecipeOutput().getUnlocalizedName().equalsIgnoreCase("gt.integrated_circuit")) {
+          continue;
+        }
+
         RecipeEntry output = RecipeUtil.formatRegularItemStack(original.getRecipeOutput());
         recipe.addOutput(output.getId(), output.getAmount());
 
