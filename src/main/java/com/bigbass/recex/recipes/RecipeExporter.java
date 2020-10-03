@@ -17,7 +17,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class RecipeExporter {
 
@@ -54,9 +53,10 @@ public class RecipeExporter {
     recipeList.add(ShapelessRecipesGroup.getRecipes());
     recipeList.add(ShapedOreDictRecipesGroup.getRecipes());
     recipeList.add(ShapelessOreDictRecipesGroup.getRecipes());
+    recipeList.add(SmeltingRecipesGroup.getRecipes());
     recipeList.add(OreDictRecipesGroup.getRecipes());
 
-    List<Ingredient> ingredientList = IngredientList.getIngredients();
+    Map<String, Ingredient> ingredientList = Ingredients.getIngredients();
     rootMap.put("ingredients", ingredientList);
 
     Gson gson = (new GsonBuilder()).create();
