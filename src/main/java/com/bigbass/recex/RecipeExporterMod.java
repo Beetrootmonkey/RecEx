@@ -1,7 +1,12 @@
 package com.bigbass.recex;
 
 import java.io.File;
+import java.util.List;
 
+import com.bigbass.recex.recipes.RecipeExporter;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,18 +22,18 @@ public class RecipeExporterMod
 {
 	public static final String MODID = "RecEx";
 	public static final String VERSION = "0.0.1";
-	
+
 	public static final Logger log = LogManager.getLogger("RecEx");
-	
+
 	@Mod.Instance(MODID)
 	public static RecipeExporterMod instance;
-	
+
 	@SidedProxy(clientSide = "com.bigbass.recex.proxy.ClientProxy", serverSide = "com.bigbass.recex.proxy.ServerProxy")
 	public static CommonProxy proxy;
-	
+
 	public static File clientConfigDir;
 	public static File modConfigDir;
-	
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e){
 		clientConfigDir = e.getModConfigurationDirectory();
@@ -38,9 +43,14 @@ public class RecipeExporterMod
 		}
 		proxy.preInit(e);
 	}
-	
+
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		proxy.init(e);
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent e) {
+//		RecipeExporter.getOreDictShapedRecipes();
 	}
 }

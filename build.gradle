@@ -125,10 +125,10 @@ dependencies {
 
 task getGregTech(type: Download) {
     onlyIf {
-        !file("libs/gregtech-5.09.33.31-dev.jar").exists()
+        !file("libs/gregtech-5.09.33.54-dev.jar").exists()
     }
     src "http://jenkins.usrv.eu:8080/job/Gregtech-5-Unofficial/397/artifact/build/libs/gregtech-5.09.33.31-dev.jar"
-    dest file("libs/gregtech-5.09.33.31-dev.jar")
+    dest file("libs/gregtech-5.09.33.54-dev.jar")
     mustRunAfter "deobfBinJar"
     mustRunAfter "repackMinecraft"
 }
